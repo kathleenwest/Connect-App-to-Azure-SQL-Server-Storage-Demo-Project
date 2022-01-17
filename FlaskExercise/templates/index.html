@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Index - Connecting Your App to Azure SQL Server and Storage Demo</title>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      name="viewport"
+    />
+    <link rel="stylesheet" type="text/css" href="../static/main.css"/>
+  </head>
+
+  <body>
+  <div class = "container">
+    <div class="header box">My Pets</div>
+    <div class="content box">
+      <div class="flex-container">
+        {% for pet in pets %}
+        <div class="pet">
+          <h3>{{ pet.name }}</h3>
+          {% if pet.image_path %}
+            <img src="{{ imageSource + pet.image_path }}"/><br>
+            <form action="/pet/{{ pet.id }}">
+              <input type="submit" value="Edit Image" />
+            </form>
+          {% else %}
+            <form action="/pet/{{ pet.id }}">
+              <input type="submit" value="Add Image" />
+            </form>           
+          {% endif %}
+          <p>
+            <i>{{ pet.type }}</i><br>
+            {{ pet.description }}<br>
+          </p>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="footer box">Demo by Kathleen West</div>
+  </div>
+  </body>
+</html>
